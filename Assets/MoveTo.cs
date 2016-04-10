@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RandomMoving : MonoBehaviour {
+public class MoveTo : MonoBehaviour {
 
-	private Rigidbody rb;
+	public Transform goal;
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody>();
+
+		NavMeshAgent agent = GetComponent<NavMeshAgent>();
+		agent.destination = goal.position; 
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		rb.MovePosition(transform.position+1);
+	
 	}
 }
