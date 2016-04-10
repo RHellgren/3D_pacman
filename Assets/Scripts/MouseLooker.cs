@@ -11,7 +11,7 @@ public class MouseLooker : MonoBehaviour {
 	public float MaximumX = 90F;
 	public bool smooth;
 	public float smoothTime = 5f;
-	
+	public Camera camera;
 	// internal private variables
 	private Quaternion m_CharacterTargetRot;
 	private Quaternion m_CameraTargetRot;
@@ -26,7 +26,7 @@ public class MouseLooker : MonoBehaviour {
 		character = gameObject.transform;
 
 		// get a reference to the main camera's transform
-		cameraTransform = Camera.main.transform;
+		cameraTransform = camera.transform;
 
 		// get the location rotation of the character and the camera
 		m_CharacterTargetRot = character.localRotation;
