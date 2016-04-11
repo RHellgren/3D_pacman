@@ -11,7 +11,8 @@ public class OrangeEnemy : MonoBehaviour {
 	public Vector3[] idles;
 	public int mode = 1;
 	private int index = 0;
-
+	public bool isActivated = false;
+	private bool isEatable = false;
 		void Start () {
 
 		agent = GetComponent<NavMeshAgent>();
@@ -24,8 +25,28 @@ public class OrangeEnemy : MonoBehaviour {
 		idles [3] = new Vector3(idle4.position.x,0,idle4.position.z);
 
 		}
-		
+		public void activate () {
+		//Start to move
+		//Ghosts always move to the left as soon as they leave the ghost house, but they may reverse direction almost immediately due to an effect that will be described later.
+		isActivated = true;
+		}
+		public void setMode (int Mode) {
+		mode = Mode;
+		// 1 attack
+		// 2 Frightened mode is unique because the ghosts do not have a specific target tile while in this mode. Instead, they pseudorandomly decide which turns to make at every intersection.
+		// 3 Going Arround
+		// when switching mode they are forced to reverse direction as soon as they enter the next tile.
+		}
+		public void setIsEatable(bool isEatable){
+		this.isEatable = isEatable;
+		}
+	
+		public bool getIsActivated(){
+		return isActivated;
+		}
 		void Update () {
+		if (!isActivated)
+			return;
 		//agent.velocity = new Vector3 (5, 0, 5);
 		// Update destination if the target moves one unit
 		if (mode == 1) {
