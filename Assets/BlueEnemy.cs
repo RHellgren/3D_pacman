@@ -21,7 +21,6 @@ public class BlueEnemy : MonoBehaviour {
 		//Ghosts always move to the left as soon as they leave the ghost house, but they may reverse direction almost immediately due to an effect that will be described later.
 		isActivated = true;
 		transform.position = new Vector3 (-0.95f, 0.0f, 2.95f);
-		Debug.Log ("activate - blue");
 	}
 
 
@@ -50,6 +49,7 @@ public class BlueEnemy : MonoBehaviour {
 	}
 
 	public void setMode (int mode) {
+		currentMode = mode;
 		// 1 attack
 		// 2 Frightened mode is unique because the ghosts do not have a specific target tile while in this mode. Instead, they pseudorandomly decide which turns to make at every intersection.
 		// 3 Going Arround
@@ -76,7 +76,6 @@ public class BlueEnemy : MonoBehaviour {
 
 		//Calculating the direction
 		Vector3 tempDirection = playerPosi - previousPlayerPosi;
-		Vector3 target = new Vector3 (playerPosi.x,playerPosi.y,playerPosi.z);
 
 		if (tempDirection.x > 0) {
 			playerPosi.x += 2;
@@ -84,7 +83,11 @@ public class BlueEnemy : MonoBehaviour {
 			playerPosi.z += 2;
 		}
 
-		target = target + 2 * (playerPosi - redPosi);
+		Vector3 target = new Vector3 (playerPosi.x,playerPosi.y,playerPosi.z);
+		//target = target + 2 * (playerPosi - redPosi);
+		target.x += 2 * (redPosi.x-playerPosi.x);
+		target.z += 2 * (redPosi.z-playerPosi.z);
+
 		//set the movement
 		moveTo(target);
 	}
@@ -100,6 +103,6 @@ public class BlueEnemy : MonoBehaviour {
 	private void moveTo(Vector3 target){
 		 NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		agent.destination = target;
-		 agent.velocity = new Vector3 (5,5,0); //This is to make it move at constant speed
+		 agent.velocity = new Vector3 (5,0,5); //This is to make it move at constant speed
 	}
 }
