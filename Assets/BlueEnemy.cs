@@ -6,10 +6,11 @@ public class BlueEnemy : MonoBehaviour {
 	private bool isActivated = false;
 	private bool isEatable = false;
 
+	private int currentMode = 0;
+
 	// Use this for initialization
 	void Start () {
-
-		//Set up the navigation
+		//Set up the variable you need
 
 	}
 
@@ -22,6 +23,10 @@ public class BlueEnemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		// The way to setup the nevigation
+		// NavMeshAgent agent = GetComponent<NavMeshAgent>();
+		// agent.destination = 
+		// agent.velocity = new Vector3 (5,5,0); //This is to make it move at constant speed
 
 	}
 

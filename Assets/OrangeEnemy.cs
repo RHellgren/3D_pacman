@@ -8,8 +8,7 @@ public class OrangeEnemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		//Set up the navigation
+		//Set up the variable you need
 
 	}
 
@@ -22,6 +21,10 @@ public class OrangeEnemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		// The way to setup the nevigation
+		// NavMeshAgent agent = GetComponent<NavMeshAgent>();
+		// agent.destination = 
+		// agent.velocity = new Vector3 (5,5,0); //This is to make it move at constant speed
 
 	}
 
