@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour {
 	public static GameManager gm;
 	public int score=0;
 	public Text mainScoreDisplay;
+
+	public Transform enemyRed;
 	// Use this for initialization
 	void Start () {
 		if (gm == null) 
