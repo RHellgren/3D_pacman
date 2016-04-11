@@ -38,15 +38,15 @@ public class EnemyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Activate the enemy when possible
-		if (score >= 5 && !pink.getIsActivated) {
+		if (score >= 5 && !pink.getIsActivated()) {
 			pink.activate ();
 		}
 
-		if (score >= 30 && !blue.getIsActivated) {
+		if (score >= 30 && !blue.getIsActivated()) {
 			blue.activate ();
 		}
 
-		if (score >= 80 && !blue.getIsActivated) {
+		if (score >= 80 && !orange.getIsActivated()) {
 			blue.activate ();
 		}
 	}
