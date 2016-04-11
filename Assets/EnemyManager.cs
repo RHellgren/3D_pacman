@@ -27,9 +27,9 @@ public class EnemyManager : MonoBehaviour {
 			em = this.gameObject.GetComponent<EnemyManager>();
 		red = enemyRed.GetComponent<RedEnemy> ();
 		red.activate ();
-		blue = enemyRed.GetComponent<BlueEnemy> ();
-		pink = enemyRed.GetComponent<PinkEnemy> ();
-		orange = enemyRed.GetComponent<OrangeEnemy> ();
+		blue = enemyBlue.GetComponent<BlueEnemy> ();
+		pink = enemyPink.GetComponent<PinkEnemy> ();
+		orange = enemyOrange.GetComponent<OrangeEnemy> ();
 
 		//Set the basic mode into 3, going around
 		setMode3();
@@ -102,6 +102,4 @@ public class EnemyManager : MonoBehaviour {
 		orange.setIsEatable (false);
 		setMode1 ();
 	}
-
-
 }
