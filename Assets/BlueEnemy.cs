@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RedEnemy : MonoBehaviour {
+public class BlueEnemy : MonoBehaviour {
 
 	private bool isActivated = false;
 	private bool isEatable = false;
@@ -10,7 +10,7 @@ public class RedEnemy : MonoBehaviour {
 	void Start () {
 
 		//Set up the navigation
-	
+
 	}
 
 	public void activate () {
@@ -19,14 +19,14 @@ public class RedEnemy : MonoBehaviour {
 		isActivated = true;
 	}
 
-	
+
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	public void setDestination (Vector3 destination) {
-		
+
 	}
 
 	public void setMode (int mode) {

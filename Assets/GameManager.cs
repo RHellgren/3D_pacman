@@ -6,11 +6,14 @@ public class GameManager : MonoBehaviour {
 	public int score=0;
 	public Text mainScoreDisplay;
 
-	public Transform enemyRed;
+	public EnemyManager em;
+
 	// Use this for initialization
 	void Start () {
 		if (gm == null) 
 			gm = this.gameObject.GetComponent<GameManager>();
+		em = this.gameObject.GetComponent<EnemyManager>();
+		
 	}
 	
 	// Update is called once per frame
@@ -22,6 +25,9 @@ public class GameManager : MonoBehaviour {
 		// increase the score by the scoreAmount and update the text UI
 		score += scoreAmount;
 		mainScoreDisplay.text = score.ToString ();
+		em.updateScore (score);
+
+		// if eat the special food, call em.onEatSpecialFood
 
 	}
 }
