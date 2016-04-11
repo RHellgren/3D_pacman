@@ -1,22 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.ImageEffects;
 
-public class Controller : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 	
 	// public variables
 	public float moveSpeed = 3.0f;
 	public float gravity = 9.81f;
-
+	public bool superMode = false;
 	private CharacterController myController;
-
+	//public GameObject camera;
 	// Use this for initialization
 	void Start () {
 		// store a reference to the CharacterController component on this gameObject
 		// it is much more efficient to use GetComponent() once in Start and store
 		// the result rather than continually use etComponent() in the Update function
 		myController = gameObject.GetComponent<CharacterController>();
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		// Determine how much should move in the z-direction
