@@ -85,8 +85,8 @@ public class BlueEnemy : MonoBehaviour {
 
 		Vector3 target = new Vector3 (playerPosi.x,playerPosi.y,playerPosi.z);
 		//target = target + 2 * (playerPosi - redPosi);
-		target.x += 2 * (redPosi.x-playerPosi.x);
-		target.z += 2 * (redPosi.z-playerPosi.z);
+		target.x += (redPosi.x-playerPosi.x);
+		target.z += (redPosi.z-playerPosi.z);
 
 		//set the movement
 		moveTo(target);
