@@ -11,6 +11,8 @@ public class RedEnemy : MonoBehaviour {
 	private bool isEatable = false;
 	private int mode;
 
+	private Vector3 currentTarget;
+
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -39,7 +41,7 @@ public class RedEnemy : MonoBehaviour {
 		if (mode == 1) {	// attack
 			agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
 		} else if (mode == 2) { // frightened
-
+			startFrighten();
 		} else if (mode == 3) { // Going around
 			if ((Vector3.Distance (agent.transform.position, idles [currentIdle])) < 1) {
 				currentIdle++;
@@ -68,5 +70,13 @@ public class RedEnemy : MonoBehaviour {
 
 	public bool getIsActivated(){
 		return isActivated;
+	}
+
+	public void startFrighten(){
+		if (mode != 2)
+			return;
+		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Random(-37.9F, 0F, 10.25251F));
+		agent.destination = currentTarget;
+		Invoke (startFrighten, 5);
 	}
 }

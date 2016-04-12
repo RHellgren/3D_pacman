@@ -13,6 +13,8 @@ public class BlueEnemy : MonoBehaviour {
 	private Vector3 previousPlayerPosi = new Vector3(0,0,0);
 	public Transform enemyRed;
 
+	private Vector3 currentTarget;
+
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -107,7 +109,7 @@ public class BlueEnemy : MonoBehaviour {
 	}
 
 	private void frightened(){
-		
+		startFrighten();
 	}
 
 	private void scatter(){
@@ -123,5 +125,13 @@ public class BlueEnemy : MonoBehaviour {
 	private void moveTo(Vector3 target){
 		agent.destination = target;
 		//agent.velocity = new Vector3 (5,0,5); //This is to make it move at constant speed
+	}
+
+	public void startFrighten(){
+		if (mode != 2)
+			return;
+		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Random(-37.9F, 0F, 10.25251F));
+		agent.destination = currentTarget;
+		Invoke (startFrighten, 5);
 	}
 }
