@@ -7,13 +7,12 @@ public class GameManager : MonoBehaviour {
 	public Text mainScoreDisplay;
 	public Transform em;
 	private EnemyManager emManager;
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> 27624dbf561a6b3cd56deac1abd95c84e0c84a0e
+
+
 	// Use this for initialization
 	void Start () {
 		if (gm == null) 
