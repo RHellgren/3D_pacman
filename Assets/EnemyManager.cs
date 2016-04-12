@@ -48,7 +48,7 @@ public class EnemyManager : MonoBehaviour {
 		}
 
 		if (score >= 80 && !orange.getIsActivated()) {
-			orange.activate ();
+			blue.activate ();
 		}
 	}
 
@@ -85,7 +85,7 @@ public class EnemyManager : MonoBehaviour {
 		//Set to Going Around mode
 		if (!specialMode)
 			updateAllAIMode(3);
-		//Invoke("setMode1", this.scatterLength);
+		Invoke("setMode1", this.scatterLength);
 	}
 
 	private void updateAllAIMode(int mode){
