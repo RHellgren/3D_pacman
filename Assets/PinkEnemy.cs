@@ -85,8 +85,8 @@ public class PinkEnemy : MonoBehaviour {
 	public void startFrighten(){
 		if (mode != 2)
 			return;
-		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Random(-37.9F, 0F, 10.25251F));
+		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;
-		Invoke (startFrighten, 5);
+		Invoke ("startFrighten", 5F);
 	}
 }
