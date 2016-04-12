@@ -2,17 +2,30 @@
 using System.Collections;
 
 public class BlueEnemy : MonoBehaviour {
+	
+	NavMeshAgent agent;
+	public Transform idle1,idle2,idle3,idle4,idle5,idle6,idle7,idle8;
+	public Vector3[] idles;
+	private int currentIdle = 0;
 	private bool isActivated = false;
 	private bool isEatable = false;
-
-	private int currentMode = 0;
+	private int mode;
 	private Vector3 previousPlayerPosi = new Vector3(0,0,0);
-
 	public Transform enemyRed;
 
 	// Use this for initialization
 	void Start () {
-		//Set up the variable you need
+		agent = GetComponent<NavMeshAgent>();
+		// Cache agent component and destination
+		idles = new Vector3[8];
+		idles [0] = new Vector3(idle1.position.x,0,idle1.position.z);
+		idles [1] = new Vector3(idle2.position.x,0,idle2.position.z);
+		idles [2] = new Vector3(idle3.position.x,0,idle3.position.z);
+		idles [3] = new Vector3(idle4.position.x,0,idle4.position.z);
+		idles [4] = new Vector3(idle5.position.x,0,idle5.position.z);
+		idles [5] = new Vector3(idle6.position.x,0,idle6.position.z);
+		idles [6] = new Vector3(idle7.position.x,0,idle7.position.z);
+		idles [7] = new Vector3(idle8.position.x,0,idle8.position.z);
 
 	}
 
@@ -20,7 +33,7 @@ public class BlueEnemy : MonoBehaviour {
 		//Start to move
 		//Ghosts always move to the left as soon as they leave the ghost house, but they may reverse direction almost immediately due to an effect that will be described later.
 		isActivated = true;
-		transform.position = new Vector3 (-0.95f, 0.0f, 2.95f);
+		//transform.position = new Vector3 (-0.95f, 0.0f, 2.95f);
 	}
 
 
@@ -28,12 +41,13 @@ public class BlueEnemy : MonoBehaviour {
 	void Update () {
 		if (!isActivated)
 			return;
-		if (currentMode == 1) {
+		
+		if (mode == 1) {
 			//Attacking
 			attack();
-		}else if (currentMode == 2) {
+		}else if (mode == 2) {
 			frightened ();
-		}else if (currentMode == 3) {
+		}else if (mode == 3) {
 			scatter ();
 		}
 
@@ -48,8 +62,8 @@ public class BlueEnemy : MonoBehaviour {
 
 	}
 
-	public void setMode (int mode) {
-		currentMode = mode;
+	public void setMode (int Mode) {
+		mode = Mode;
 		// 1 attack
 		// 2 Frightened mode is unique because the ghosts do not have a specific target tile while in this mode. Instead, they pseudorandomly decide which turns to make at every intersection.
 		// 3 Going Arround
@@ -98,11 +112,16 @@ public class BlueEnemy : MonoBehaviour {
 
 	private void scatter(){
 		// Going Around function
+		if ((Vector3.Distance (agent.transform.position, idles [currentIdle])) < 1) {
+			currentIdle++;
+			if (currentIdle == 8)
+				currentIdle = 0;
+		}
+		agent.destination = idles [currentIdle];
 	}
 
 	private void moveTo(Vector3 target){
-		 NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		agent.destination = target;
-		 agent.velocity = new Vector3 (5,0,5); //This is to make it move at constant speed
+		//agent.velocity = new Vector3 (5,0,5); //This is to make it move at constant speed
 	}
 }

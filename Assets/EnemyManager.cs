@@ -25,11 +25,13 @@ public class EnemyManager : MonoBehaviour {
 	void Start () {
 		if (em == null) 
 			em = this.gameObject.GetComponent<EnemyManager>();
+		
 		red = enemyRed.GetComponent<RedEnemy> ();
-		red.activate ();
 		blue = enemyBlue.GetComponent<BlueEnemy> ();
 		pink = enemyPink.GetComponent<PinkEnemy> ();
 		orange = enemyOrange.GetComponent<OrangeEnemy> ();
+
+		red.activate ();
 		//Set the basic mode into 3, going around
 		setMode3();
 	}
@@ -83,7 +85,7 @@ public class EnemyManager : MonoBehaviour {
 		//Set to Going Around mode
 		if (!specialMode)
 			updateAllAIMode(3);
-		Invoke("setMode1", this.scatterLength);
+		//Invoke("setMode1", this.scatterLength);
 	}
 
 	private void updateAllAIMode(int mode){
