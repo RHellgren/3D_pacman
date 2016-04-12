@@ -30,7 +30,6 @@ public class EnemyManager : MonoBehaviour {
 		blue = enemyBlue.GetComponent<BlueEnemy> ();
 		pink = enemyPink.GetComponent<PinkEnemy> ();
 		orange = enemyOrange.GetComponent<OrangeEnemy> ();
-
 		//Set the basic mode into 3, going around
 		setMode3();
 	}
@@ -100,6 +99,7 @@ public class EnemyManager : MonoBehaviour {
 		blue.setIsEatable (false);
 		pink.setIsEatable (false);
 		orange.setIsEatable (false);
+		
 		setMode1 ();
 	}
 }

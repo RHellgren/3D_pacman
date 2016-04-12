@@ -18,6 +18,7 @@ public class RedEnemy : MonoBehaviour {
 		//Ghosts always move to the left as soon as they leave the ghost house, but they may reverse direction almost immediately due to an effect that will be described later.
 		NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		agent.destination = new Vector3 (-10,-2,-17); // Random position to the left
+		agent.velocity = new Vector3 (5,5,0); //This is to make it move at constant speed
 		isActivated = true;
 	}
 
@@ -25,9 +26,9 @@ public class RedEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		NavMeshAgent agent = GetComponent<NavMeshAgent>();
+		agent.velocity = new Vector3 (5,5,0); //This is to make it move at constant speed
 		if (currentMode == 1) {	// attack
-			agent.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
-			Debug.Log (agent.destination);
+			agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
 		} else if (currentMode == 2) { // frightened
 
 		} else { // Going around
@@ -38,6 +39,7 @@ public class RedEnemy : MonoBehaviour {
 	public void setDestination (Vector3 destination) {
 		NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		agent.destination = destination;
+		agent.velocity = new Vector3 (5,5,0); //This is to make it move at constant speed
 	}
 
 	public void setMode (int mode) {
