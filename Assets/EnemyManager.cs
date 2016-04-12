@@ -46,7 +46,7 @@ public class EnemyManager : MonoBehaviour {
 		}
 
 		if (score >= 80 && !orange.getIsActivated()) {
-			blue.activate ();
+			orange.activate ();
 		}
 	}
 

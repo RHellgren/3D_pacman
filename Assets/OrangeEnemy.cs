@@ -64,5 +64,14 @@ public class OrangeEnemy : MonoBehaviour {
 					index = 0;
 			}
 		}
+		if (mode == 3) {
+			destination = idles [index];
+			agent.destination = destination;
+			if (Vector3.Distance (destination, transform.position) < 1.0f) {
+				index++;
+				if (index == 4)
+					index = 0;
+			}
+		}
 	}
 }
