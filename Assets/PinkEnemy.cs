@@ -33,7 +33,8 @@ public class PinkEnemy : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Player" && isEatable == true) {
-			Destroy (gameObject);
+			//Destroy (gameObject);
+			resetEnemy();
 			GameManager.gm.targetHit (20);
 		} else if (other.gameObject.tag == "Player" && isEatable == false)
 			Application.LoadLevel ("GameOver");
@@ -101,5 +102,9 @@ public class PinkEnemy : MonoBehaviour {
 		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;
 		Invoke ("startFrighten", 5F);
+	}
+
+	private void resetEnemy(){
+		transform.position = new Vector3 (-0.8F,0F,-2.75F);
 	}
 }
