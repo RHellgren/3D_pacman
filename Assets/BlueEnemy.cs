@@ -9,6 +9,7 @@ public class BlueEnemy : MonoBehaviour {
 	private int currentIdle = 0;
 	private bool isActivated = false;
 	private bool isEatable = false;
+	private bool isFrightening = false;
 	private int mode;
 	private Vector3 previousPlayerPosi = new Vector3(0,0,0);
 	public Transform enemyRed;
@@ -81,6 +82,10 @@ public class BlueEnemy : MonoBehaviour {
 	}
 
 	private void attack (){
+		if (enemyRed == null) {
+			agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
+			return;
+		}
 		//get the player's position
 		Vector3 playerPosi =  GameObject.FindGameObjectWithTag ("Player").transform.position;
 
@@ -117,6 +122,7 @@ public class BlueEnemy : MonoBehaviour {
 	}
 	private void frightened(){
 		startFrighten();
+		isFrightening = true;
 	}
 
 	private void scatter(){
@@ -135,7 +141,11 @@ public class BlueEnemy : MonoBehaviour {
 	}
 
 	public void startFrighten(){
-		if (mode != 2)
+		if (mode != 2) {
+			isFrightening = false;
+			return;
+		}
+		if (isFrightening) 
 			return;
 		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;

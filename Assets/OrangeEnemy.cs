@@ -12,6 +12,7 @@ public class OrangeEnemy : MonoBehaviour {
 	private int index = 0;
 	public bool isActivated = false;
 	private bool isEatable = false;
+	private bool isFrightening = false;
 
 	private Vector3 currentTarget;
 
@@ -69,6 +70,7 @@ public class OrangeEnemy : MonoBehaviour {
 		}
 
 		if (mode == 2) {
+			isFrightening = true;
 			startFrighten ();
 		}
 
@@ -84,7 +86,11 @@ public class OrangeEnemy : MonoBehaviour {
 	}
 
 	public void startFrighten(){
-		if (mode != 2)
+		if (mode != 2) {
+			isFrightening = false;
+			return;
+		}
+		if (isFrightening) 
 			return;
 		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;

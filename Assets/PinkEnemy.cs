@@ -9,6 +9,7 @@ public class PinkEnemy : MonoBehaviour {
 	private int currentIdle = 0;
 	private bool isActivated = false;
 	private bool isEatable = false;
+	private bool isFrightening = false;
 	private int mode;
 
 	private Vector3 currentTarget;
@@ -59,6 +60,7 @@ public class PinkEnemy : MonoBehaviour {
 			agent.destination = newPosition;
 		} else if (mode == 2) { // frightened
 			startFrighten();
+			isFrightening = true;
 		} else if (mode == 3) { // Going around
 			if ((Vector3.Distance (agent.transform.position, idles [currentIdle])) < 1) {
 				currentIdle++;
@@ -90,7 +92,11 @@ public class PinkEnemy : MonoBehaviour {
 	}
 
 	public void startFrighten(){
-		if (mode != 2)
+		if (mode != 2) {
+			isFrightening = false;
+			return;
+		}
+		if (isFrightening) 
 			return;
 		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;
