@@ -29,6 +29,14 @@ public class OrangeEnemy : MonoBehaviour {
 		idles [6] = new Vector3(idle7.position.x,0,idle7.position.z);
 		idles [7] = new Vector3(idle8.position.x,0,idle8.position.z);
 	}
+	private void OnTriggerEnter(Collider other){
+		if (other.gameObject.tag == "Player" && isEatable == true) {
+			Destroy (gameObject);
+			GameManager.gm.targetHit (20);
+		} else if (other.gameObject.tag == "Player" && isEatable == false)
+			Application.LoadLevel ("GameOver");
+
+	}
 	public void activate () {
 		//Start to move
 		//Ghosts always move to the left as soon as they leave the ghost house, but they may reverse direction almost immediately due to an effect that will be described later.

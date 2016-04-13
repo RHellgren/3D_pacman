@@ -7,12 +7,12 @@ public class EnemyManager : MonoBehaviour {
 	public Transform enemyBlue;
 	public Transform enemyPink;
 	public Transform enemyOrange;
-
+	public Transform player;
 	private RedEnemy red;
 	private BlueEnemy blue;
 	private PinkEnemy pink;
 	private OrangeEnemy orange;
-
+	private PlayerController playercontroller;
 	private int score = 0;
 
 	private bool specialMode = false;
@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour {
 		blue = enemyBlue.GetComponent<BlueEnemy> ();
 		pink = enemyPink.GetComponent<PinkEnemy> ();
 		orange = enemyOrange.GetComponent<OrangeEnemy> ();
-
+		playercontroller = player.GetComponent<PlayerController> ();
 		red.activate ();
 		//Set the basic mode into 3, going around
 		setMode3();
@@ -49,6 +49,9 @@ public class EnemyManager : MonoBehaviour {
 
 		if (score >= 80 && !orange.getIsActivated()) {
 			orange.activate ();
+		}
+		if (playercontroller.superMode == true) {
+			onEatSpecialFood ();
 		}
 	}
 
@@ -101,7 +104,7 @@ public class EnemyManager : MonoBehaviour {
 		blue.setIsEatable (false);
 		pink.setIsEatable (false);
 		orange.setIsEatable (false);
-		
+		playercontroller.superMode = false;
 		setMode1 ();
 	}
 }

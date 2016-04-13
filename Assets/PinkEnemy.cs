@@ -30,7 +30,14 @@ public class PinkEnemy : MonoBehaviour {
 		isActivated = true;
 	}
 
+	private void OnTriggerEnter(Collider other){
+		if (other.gameObject.tag == "Player" && isEatable == true) {
+			Destroy (gameObject);
+			GameManager.gm.targetHit (20);
+		} else if (other.gameObject.tag == "Player" && isEatable == false)
+			Application.LoadLevel ("GameOver");
 
+	}
 	// Update is called once per frame
 	void Update () {
 		if (!isActivated)

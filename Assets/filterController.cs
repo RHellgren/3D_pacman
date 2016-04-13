@@ -13,5 +13,6 @@ public class filterController : MonoBehaviour {
 		if (controller.superMode) {
 			GetComponent<VignetteAndChromaticAberration>().enabled = true;
 		}
+		else GetComponent<VignetteAndChromaticAberration>().enabled = false;
 	}
 }
