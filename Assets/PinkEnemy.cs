@@ -11,7 +11,7 @@ public class PinkEnemy : MonoBehaviour {
 	private bool isEatable = false;
 	private bool isFrightening = false;
 	private int mode;
-
+	private Vector3 previousPlayerPosition;
 	private Vector3 currentTarget;
 
 	// Use this for initialization
@@ -27,7 +27,6 @@ public class PinkEnemy : MonoBehaviour {
 
 	public void activate () {
 		//Start to move
-		//Ghosts always move to the left as soon as they leave the ghost house, but they may reverse direction almost immediately due to an effect that will be described later.
 		isActivated = true;
 	}
 
@@ -45,20 +44,15 @@ public class PinkEnemy : MonoBehaviour {
 		if (!isActivated)
 			return;
 
+		Vector3 newPosition = new Vector3(0,0,0);
 		if (mode == 1) {	// attack
-			int fourTiles = 10;
-			Vector3 cameraDirection = GameObject.FindGameObjectWithTag("MainCamera").transform.eulerAngles;
-			Vector3 newPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-			if (cameraDirection.x >= 45 && cameraDirection.x < 135) // up
-				newPosition.z += fourTiles;
-			else
-			if (cameraDirection.x >= 135 && cameraDirection.x < 225) // left
-				newPosition.y -= fourTiles;
-			else if (cameraDirection.x >= 225 && cameraDirection.x < 315) // down
-				newPosition.z -= fourTiles;
-			else // right
-				newPosition.y += fourTiles;
+			newPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+			float differenceX = previousPlayerPosition.x - newPosition.x;
+			float differenceZ = previousPlayerPosition.z - newPosition.z;
+			newPosition.x += (differenceX * 10);
+			newPosition.z += (differenceZ * 10);
 			agent.destination = newPosition;
+			previousPlayerPosition = newPosition;
 		} else if (mode == 2) { // frightened
 			if (!isFrightening)
 				startFrighten();
