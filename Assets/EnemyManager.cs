@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour {
 	private int score = 0;
 
 	private bool specialMode = false;
-	private int speicalModeLength = 10;
+	private float speicalModeLength = 10.0f;
 	private int attackLength = 20;
 	private int scatterLength = 7;
 
@@ -75,6 +75,7 @@ public class EnemyManager : MonoBehaviour {
 		if (this.specialMode)
 			return;
 		if (!specialMode)
+			playercontroller.superMode = false;
 			updateAllAIMode(1);
 		Invoke("setMode3", this.attackLength);
 	}
@@ -82,6 +83,7 @@ public class EnemyManager : MonoBehaviour {
 	private void setMode2(){
 		//Set to Frightend mode
 		this.specialMode = true;
+		playercontroller.superMode = true;
 		updateAllAIMode(2);
 		Invoke("endOfSpecialTime", this.speicalModeLength);
 	}
@@ -108,7 +110,6 @@ public class EnemyManager : MonoBehaviour {
 		blue.setIsEatable (false);
 		pink.setIsEatable (false);
 		orange.setIsEatable (false);
-		playercontroller.superMode = false;
 		setMode1 ();
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class BlueEnemy : MonoBehaviour {
-	
+	public GameManager gm;
 	NavMeshAgent agent;
 	public Transform idle1,idle2,idle3,idle4,idle5,idle6,idle7,idle8;
 	public Vector3[] idles;
@@ -13,7 +13,7 @@ public class BlueEnemy : MonoBehaviour {
 	private int mode;
 	private Vector3 previousPlayerPosi = new Vector3(0,0,0);
 	public Transform enemyRed;
-
+	public AudioSource eatGhost;
 	private Vector3 currentTarget;
 
 	// Use this for initialization
@@ -117,9 +117,9 @@ public class BlueEnemy : MonoBehaviour {
 		if (other.gameObject.tag == "Player" && isEatable == true) {
 			//Destroy (gameObject);
 			resetEnemy();
-			GameManager.gm.targetHit (20);
+			gm.targetHit (20);
 		} else if (other.gameObject.tag == "Player" && isEatable == false)
-			Application.LoadLevel ("GameOver");
+			gm.GameOver();
 
 	}
 	private void frightened(){
@@ -154,6 +154,7 @@ public class BlueEnemy : MonoBehaviour {
 	}
 
 	private void resetEnemy(){
+		eatGhost.Play ();
 		transform.position = new Vector3 (-2.9F,0F,-2.75F);
 	}
 }

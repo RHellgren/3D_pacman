@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class RedEnemy : MonoBehaviour {
-
+	public GameManager gm;
 	NavMeshAgent agent;
 	public Transform idle1,idle2,idle3,idle4;
 	public Vector3[] idles;
@@ -11,7 +11,7 @@ public class RedEnemy : MonoBehaviour {
 	private bool isEatable = false;
 	private bool isFrightening = false;
 	private int mode;
-
+	public AudioSource eatGhost;
 	private Vector3 currentTarget;
 
 	// Use this for initialization
@@ -29,9 +29,9 @@ public class RedEnemy : MonoBehaviour {
 		if (other.gameObject.tag == "Player" && isEatable == true) {
 			//Destroy (gameObject);
 			resetEnemy();
-			GameManager.gm.targetHit (20);
+			gm.targetHit (20);
 		} else if (other.gameObject.tag == "Player" && isEatable == false)
-			Application.LoadLevel ("GameOver");
+			gm.GameOver();
 
 	}
 	public void activate () {
@@ -97,6 +97,7 @@ public class RedEnemy : MonoBehaviour {
 	}
 
 	private void resetEnemy(){
+		eatGhost.Play ();
 		transform.position = new Vector3 (-0.8F,0F,-10F);
 	}
 }

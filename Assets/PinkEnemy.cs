@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PinkEnemy : MonoBehaviour {
-
+	public GameManager gm;
 	NavMeshAgent agent;
 	public Transform idle1,idle2,idle3,idle4;
 	public Vector3[] idles;
@@ -13,7 +13,7 @@ public class PinkEnemy : MonoBehaviour {
 	private int mode;
 	private Vector3 previousPlayerPosition;
 	private Vector3 currentTarget;
-
+	public AudioSource eatGhost;
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -34,9 +34,9 @@ public class PinkEnemy : MonoBehaviour {
 		if (other.gameObject.tag == "Player" && isEatable == true) {
 			//Destroy (gameObject);
 			resetEnemy();
-			GameManager.gm.targetHit (20);
+			gm.targetHit (20);
 		} else if (other.gameObject.tag == "Player" && isEatable == false)
-			Application.LoadLevel ("GameOver");
+			gm.GameOver();
 
 	}
 	// Update is called once per frame
@@ -98,6 +98,7 @@ public class PinkEnemy : MonoBehaviour {
 	}
 
 	private void resetEnemy(){
+		eatGhost.Play ();
 		transform.position = new Vector3 (-0.8F,0F,-2.75F);
 	}
 }

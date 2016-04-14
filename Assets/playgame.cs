@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class playagain : MonoBehaviour {
+public class playgame : MonoBehaviour {
 	public Button button;
 	// Use this for initialization
 	void Start () {
+		Cursor.visible = true;
 	}
 
 	void onClick(){

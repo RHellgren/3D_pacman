@@ -3,6 +3,7 @@ using System.Collections;
 
 public class OrangeEnemy : MonoBehaviour {
 
+	public GameManager gm;
 	public Transform player;
 	Vector3 destination;
 	NavMeshAgent agent;
@@ -13,7 +14,7 @@ public class OrangeEnemy : MonoBehaviour {
 	public bool isActivated = false;
 	private bool isEatable = false;
 	private bool isFrightening = false;
-
+	public AudioSource eatGhost;
 	private Vector3 currentTarget;
 
 	void Start () {
@@ -34,9 +35,9 @@ public class OrangeEnemy : MonoBehaviour {
 		if (other.gameObject.tag == "Player" && isEatable == true) {
 			//Destroy (gameObject);
 			resetEnemy();
-			GameManager.gm.targetHit (20);
+			gm.targetHit (20);
 		} else if (other.gameObject.tag == "Player" && isEatable == false)
-			Application.LoadLevel ("GameOver");
+			gm.GameOver();
 
 	}
 	public void activate () {
@@ -98,6 +99,7 @@ public class OrangeEnemy : MonoBehaviour {
 	}
 
 	private void resetEnemy(){
+		eatGhost.Play ();
 		transform.position = new Vector3 (1.7F,0F,-10F);
 	}
 }
