@@ -49,9 +49,9 @@ public class RedEnemy : MonoBehaviour {
 		if (mode == 1) {	// attack
 			agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
 		} else if (mode == 2) { // frightened
+			if (!isFrightening)
+				startFrighten();
 			isFrightening = true;
-			startFrighten();
-
 		} else if (mode == 3) { // Going around
 			if ((Vector3.Distance (agent.transform.position, idles [currentIdle])) < 1) {
 				currentIdle++;
@@ -83,14 +83,16 @@ public class RedEnemy : MonoBehaviour {
 	}
 
 	public void startFrighten(){
+		Debug.Log ("start to frighten "+mode+" "+isFrightening);
 		if (mode != 2) {
 			isFrightening = false;
 			return;
 		}
-		if (isFrightening) 
-			return;
 		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;
+
+		Debug.Log (currentTarget);
+
 		Invoke ("startFrighten", 5F);
 	}
 

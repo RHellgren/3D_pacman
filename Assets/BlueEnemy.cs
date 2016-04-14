@@ -123,7 +123,8 @@ public class BlueEnemy : MonoBehaviour {
 
 	}
 	private void frightened(){
-		startFrighten();
+		if (!isFrightening)
+			startFrighten();
 		isFrightening = true;
 	}
 
@@ -147,8 +148,6 @@ public class BlueEnemy : MonoBehaviour {
 			isFrightening = false;
 			return;
 		}
-		if (isFrightening) 
-			return;
 		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;
 		Invoke ("startFrighten", 5F);

@@ -72,6 +72,8 @@ public class EnemyManager : MonoBehaviour {
 
 	private void setMode1(){
 		//Set to Attack mode
+		if (this.specialMode)
+			return;
 		if (!specialMode)
 			updateAllAIMode(1);
 		Invoke("setMode3", this.attackLength);
@@ -86,6 +88,8 @@ public class EnemyManager : MonoBehaviour {
 
 	private void setMode3(){
 		//Set to Going Around mode
+		if (this.specialMode)
+			return;
 		if (!specialMode)
 			updateAllAIMode(3);
 		Invoke("setMode1", this.scatterLength);

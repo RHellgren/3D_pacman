@@ -9,15 +9,12 @@ public class GameManager : MonoBehaviour {
 	private EnemyManager emManager;
 
 
-
-
-
-
 	// Use this for initialization
 	void Start () {
 		if (gm == null) 
 			gm = this.gameObject.GetComponent<GameManager>();
 		emManager = em.GetComponent<EnemyManager> ();
+		GameObject.DontDestroyOnLoad (this);
 	}
 	
 	// Update is called once per frame

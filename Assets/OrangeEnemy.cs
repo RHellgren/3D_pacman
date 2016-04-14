@@ -71,8 +71,9 @@ public class OrangeEnemy : MonoBehaviour {
 		}
 
 		if (mode == 2) {
+			if (!isFrightening)
+				startFrighten();
 			isFrightening = true;
-			startFrighten ();
 		}
 
 		if (mode == 3) {
@@ -91,8 +92,6 @@ public class OrangeEnemy : MonoBehaviour {
 			isFrightening = false;
 			return;
 		}
-		if (isFrightening) 
-			return;
 		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;
 		Invoke ("startFrighten", 5F);

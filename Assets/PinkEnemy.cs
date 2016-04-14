@@ -60,7 +60,8 @@ public class PinkEnemy : MonoBehaviour {
 				newPosition.y += fourTiles;
 			agent.destination = newPosition;
 		} else if (mode == 2) { // frightened
-			startFrighten();
+			if (!isFrightening)
+				startFrighten();
 			isFrightening = true;
 		} else if (mode == 3) { // Going around
 			if ((Vector3.Distance (agent.transform.position, idles [currentIdle])) < 1) {
@@ -97,8 +98,6 @@ public class PinkEnemy : MonoBehaviour {
 			isFrightening = false;
 			return;
 		}
-		if (isFrightening) 
-			return;
 		currentTarget = new Vector3 (Random.Range(-17.5F, 19.5F),0F,Random.Range(-37.9F, 10.25251F));
 		agent.destination = currentTarget;
 		Invoke ("startFrighten", 5F);
