@@ -110,7 +110,11 @@ public class BlueEnemy : MonoBehaviour {
 		target.z += (redPosi.z-playerPosi.z);
 
 		//set the movement
-		moveTo(target);
+
+		if (Vector3.Distance(agent.destination, target)<=1F) {
+			agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
+		}else
+			agent.destination = target;
 		previousPlayerPosi = playerPosi;
 	}
 	private void OnTriggerEnter(Collider other){

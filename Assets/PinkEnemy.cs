@@ -51,7 +51,11 @@ public class PinkEnemy : MonoBehaviour {
 			float differenceZ = previousPlayerPosition.z - newPosition.z;
 			newPosition.x += (differenceX * 10);
 			newPosition.z += (differenceZ * 10);
-			agent.destination = newPosition;
+
+			if (Vector3.Distance(agent.destination, newPosition)<=1F) {
+				agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
+			}else
+				agent.destination = newPosition;
 			previousPlayerPosition = newPosition;
 		} else if (mode == 2) { // frightened
 			if (!isFrightening)
@@ -100,5 +104,6 @@ public class PinkEnemy : MonoBehaviour {
 	private void resetEnemy(){
 		eatGhost.Play ();
 		transform.position = new Vector3 (-0.8F,0F,-2.75F);
+		Debug.Log ("Pink Reseted");
 	}
 }

@@ -68,7 +68,8 @@ public class OrangeEnemy : MonoBehaviour {
 			if (Vector3.Distance (destination, player.position) > 1.0f) {
 				destination = player.position;
 				agent.destination = destination;
-			}
+			} else
+				mode = 3;
 		}
 
 		if (mode == 2) {
@@ -85,6 +86,7 @@ public class OrangeEnemy : MonoBehaviour {
 				if (index == 4)
 					index = 0;
 			}
+			mode = 1;
 		}
 	}
 
