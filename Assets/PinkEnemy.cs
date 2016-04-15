@@ -49,14 +49,20 @@ public class PinkEnemy : MonoBehaviour {
 			newPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
 			float differenceX = previousPlayerPosition.x - newPosition.x;
 			float differenceZ = previousPlayerPosition.z - newPosition.z;
-			newPosition.x += (differenceX * 10);
-			newPosition.z += (differenceZ * 10);
+			if (differenceX > 0)
+				newPosition.x += 4;
+			else
+				newPosition.x -= 4;
+			if (differenceZ > 0)
+				newPosition.z += 4;
+			else
+				newPosition.z -= 4;
 
-			if (Vector3.Distance(agent.destination, newPosition)<=1F) {
+			if (Vector3.Distance(agent.destination, newPosition)<=4.0F) {
 				Debug.Log ("pink near");
 				agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
 			}else
-				Debug.Log ("pink not near");
+				Debug.Log ("pink not near + "+newPosition);
 				agent.destination = newPosition;
 			previousPlayerPosition = newPosition;
 		} else if (mode == 2) { // frightened

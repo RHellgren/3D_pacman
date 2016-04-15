@@ -111,7 +111,7 @@ public class BlueEnemy : MonoBehaviour {
 
 		//set the movement
 
-		if (Vector3.Distance(agent.destination, target)<=1F) {
+		if (Vector3.Distance(agent.destination, target)<=4F) {
 			agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
 		}else
 			agent.destination = target;
