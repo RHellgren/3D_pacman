@@ -159,6 +159,6 @@ public class BlueEnemy : MonoBehaviour {
 
 	private void resetEnemy(){
 		eatGhost.Play ();
-		transform.position = new Vector3 (-2.9F,0F,-2.75F);
+		transform.position = new Vector3 (0,0,0);
 	}
 }

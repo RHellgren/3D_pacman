@@ -102,6 +102,6 @@ public class OrangeEnemy : MonoBehaviour {
 
 	private void resetEnemy(){
 		eatGhost.Play ();
-		transform.position = new Vector3 (1.7F,0F,-10F);
+		transform.position = new Vector3 (0,0,0);
 	}
 }
