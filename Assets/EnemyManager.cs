@@ -77,7 +77,7 @@ public class EnemyManager : MonoBehaviour {
 		if (!specialMode)
 			playercontroller.superMode = false;
 			updateAllAIMode(1);
-		Invoke("setMode3", this.attackLength);
+		//Invoke("setMode3", this.attackLength);
 	}
 
 	private void setMode2(){
