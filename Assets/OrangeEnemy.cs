@@ -65,11 +65,18 @@ public class OrangeEnemy : MonoBehaviour {
 		//agent.velocity = new Vector3 (5, 0, 5);
 		// Update destination if the target moves one unit
 		if (mode == 1) {
-			if (Vector3.Distance (destination, player.position) > 1.0f) {
+			if (Vector3.Distance (destination, player.position) > 8.0f) {
 				destination = player.position;
 				agent.destination = destination;
-			} else
-				mode = 3;
+			} else {
+				destination = idles [index];
+				agent.destination = destination;
+				if (Vector3.Distance (destination, transform.position) < 1.0f) {
+					index++;
+					if (index == 8)
+						index = 0;
+				}
+			}
 		}
 
 		if (mode == 2) {
@@ -79,14 +86,15 @@ public class OrangeEnemy : MonoBehaviour {
 		}
 
 		if (mode == 3) {
+
 			destination = idles [index];
 			agent.destination = destination;
 			if (Vector3.Distance (destination, transform.position) < 1.0f) {
 				index++;
-				if (index == 4)
+				if (index == 8)
 					index = 0;
 			}
-			mode = 1;
+
 		}
 	}
 

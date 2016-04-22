@@ -111,10 +111,8 @@ public class BlueEnemy : MonoBehaviour {
 
 		//set the movement
 
-		if (Vector3.Distance(agent.destination, target)<=4F) {
-			agent.destination = GameObject.FindGameObjectWithTag ("Player").transform.position;
-		}else
-			agent.destination = target;
+
+		agent.destination = target;
 		previousPlayerPosi = playerPosi;
 	}
 	private void OnTriggerEnter(Collider other){
@@ -134,7 +132,7 @@ public class BlueEnemy : MonoBehaviour {
 
 	private void scatter(){
 		// Going Around function
-		if ((Vector3.Distance (agent.transform.position, idles [currentIdle])) < 1) {
+		if ((Vector3.Distance (agent.transform.position, idles [currentIdle])) < 1F) {
 			currentIdle++;
 			if (currentIdle == 8)
 				currentIdle = 0;
